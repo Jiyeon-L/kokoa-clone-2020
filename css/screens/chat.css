@@ -1,6 +1,6 @@
 #chat-screen {
   background-color: #abc1d1;
-  height: 11000vh;
+  height: 500vh;
 }
 
 #chat-screen .status-bar,
@@ -21,11 +21,24 @@
   z-index: 1;
 }
 
+/*@keyframes fadeIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+*/
+
 .main-chat {
-  margin-top: 120px;
+  margin-top: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /*animation: fadeIn 0.3s linear;*/
 }
 
 .chat__timestamp {
@@ -37,10 +50,22 @@
   margin-bottom: 25px;
 }
 
+@keyframes Message-row_fadeIn {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
 .message-row {
   width: 100%;
   display: flex;
   margin-bottom: 25px;
+  animation: Message-row_fadeIn 1s linear;
 }
 
 .message-row img {
@@ -75,8 +100,20 @@
   font-size: 14px;
 }
 
+@keyframes Message-row--own_fadeIn {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
 .message-row--own {
   justify-content: flex-end;
+  animation: Message-row--own_fadeIn 1s linear;
 }
 
 .message-row--own .message__bubble {
@@ -101,6 +138,7 @@
   padding: 5px 25px;
   box-sizing: border-box;
   align-items: center;
+  transition: transform 0.3s ease-in-out;
 }
 
 .reply .reply__column:first-child {
@@ -111,23 +149,24 @@
   position: relative;
 }
 .reply input {
-  padding: 12px;
-  height: 30px;
+  padding: 14px;
   width: 100%;
   border: var(--main-border);
-  border-radius: 20px;
+  border-radius: 25px;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
 }
 
 .reply__column:last-child > i,
 .reply__column:last-child button {
   position: absolute;
-  right: -3px;
-  top: 2px;
+  right: 3px;
+  top: 3px;
 }
 
 .reply__column:last-child > i {
-  right: 40px;
-  top: 10px;
+  right: 50px;
+  top: 15px;
 }
 
 .reply i {
@@ -137,8 +176,8 @@
 .reply__column button {
   background-color: var(--yellow);
   border: none;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 
@@ -149,4 +188,25 @@
 .reply__column button:focus,
 .reply__column button:active {
   outline: none;
+}
+
+.reply .reply__column:first-child,
+.reply .fa-smile,
+.reply button {
+  transition: opacity 0.3 ease-in-out;
+}
+
+.reply:focus-within .reply__column:first-child,
+.reply:focus-within .fa-smile,
+.reply:focus-within button {
+  opacity: 0;
+}
+
+.reply input:focus {
+  width: 95vw;
+  transform: translateX(-13%) translateY(-80px);
+}
+
+.reply:focus-within {
+  transform: translateY(80px);
 }
